@@ -4,52 +4,46 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 ## 1. What was broken when you started?
 
-- What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the hints were backwards").
+The first time I ran it, the app loaded, but the feedback didn’t match my guesses. I expected a normal guessing game where the hints guide me and “New Game” resets cleanly. Instead, the hints were backwards and the game state/settings didn’t line up.
 
-The first time I ran it, the UI loaded and I could type guesses and click “Submit”, but the gameplay feedback didn’t match what I was doing. I expected a normal guessing game where the “Higher/Lower” hints reliably guide you toward the secret number, and where “New Game” resets everything consistently for the selected difficulty. Instead, multiple parts of the game state and hints behaved inconsistently, which made it feel “glitchy” and unfair.
+1) Bug: Hints were backwards.  
+- Expected: Too high → “go lower”; too low → “go higher”.  
+- Actual: It told me the opposite.
 
-1) Bug: Hints were backwards / misleading.
-   - Expected: If my guess is too high, it should tell me to go lower; if it’s too low, it should tell me to go higher.
-   - Actual: When my guess was higher than the secret, it told me “Go HIGHER”, and when my guess was lower than the secret, it told me “Go LOWER”.
+2) Bug: “New Game” didn’t match difficulty.  
+- Expected: A new secret inside the selected range.  
+- Actual: It still acted like the range was 1–100.
 
-2) Bug: “New Game” didn’t match the difficulty settings.
-   - Expected: Starting a new game should pick a secret number within the current difficulty’s range and reset attempts cleanly.
-   - Actual: “New Game” always regenerated the secret in the 1–100 range (even if difficulty wasn’t 1–100), so the sidebar range and the secret number could disagree.
-
-3) Bug: Attempt counting / range display felt incorrect.
-   - Expected: Attempts left should start at the full limit and decrease by 1 per guess, and the game should display the correct range for the chosen difficulty.
-   - Actual: Attempts started in a way that made “Attempts left” feel off by one, and the main prompt still said “Guess a number between 1 and 100” even when the sidebar showed a different range.
+3) Bug: Attempts/range display felt off.  
+- Expected: Attempts left + displayed range match the settings.  
+- Actual: Attempts felt confusing and the main text didn’t always match the sidebar.
 
 ---
 
 ## 2. How did you use AI as a teammate?
 
-- Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
-- Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
-- Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
+I used Copilot and ChatGPT to understand the code and plan changes. The best help was breaking the work into small steps (move logic into `logic_utils.py`, then fix one bug at a time). One suggestion wasn’t great because it tried to rewrite too much at once, so I tested it, saw it didn’t really fix the issue, and went back to smaller edits.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
-- How did you decide whether a bug was really fixed?
-- Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
-- Did AI help you design or understand any tests? How?
+I treated the bug as fixed only after it worked in the Streamlit app *and* the tests passed. I ran `python -m pytest` to confirm the core logic returned the right outcomes. AI helped by suggesting simple test inputs that directly matched the bugs I saw.
 
 ---
 
 ## 4. What did you learn about Streamlit and state?
 
-- How would you explain Streamlit "reruns" and session state to a friend who has never used Streamlit?
+Streamlit reruns the whole script whenever you click something, so normal variables can “reset” a lot. Session state is how you keep important values stable across reruns (secret number, attempts, score). If you don’t manage session state, the app can feel random even if the code looks fine.
 
 ---
 
 ## 5. Looking ahead: your developer habits
 
-- What is one habit or strategy from this project that you want to reuse in future labs or projects?
-  - This could be a testing habit, a prompting strategy, or a way you used Git.
-- What is one thing you would do differently next time you work with AI on a coding task?
-- In one or two sentences, describe how this project changed the way you think about AI generated code.
+I want to keep the habit of writing a small test right after I fix a bug. Next time I’ll ask AI for smaller, targeted changes and verify each one before moving on. This project reminded me AI code is a starting point — I still need to review, test, and own the final result.
+
+---
+
+## (Optional) Challenge 5: AI Model Comparison
+
+For the “backwards hints” bug, one tool mostly gave me a quick code patch, and the other did a better job explaining *why* it was happening (Streamlit reruns + state). The quick patch got me moving faster, but the better explanation helped me avoid breaking things when I refactored. Overall, I trusted the fix that came with a clear reason *and* matched what I saw when I reran the app and tests.
