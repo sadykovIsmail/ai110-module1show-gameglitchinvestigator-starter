@@ -17,16 +17,14 @@ This repo is a Streamlit number guessing game that started out *very* buggy (wro
 - [x] **Fixes applied:** Moved logic into `logic_utils.py`, fixed hint logic + state resets, added tests, and improved the UI/summary output.
 
 ## 📸 Demo
-
-- [ ] Insert a screenshot of your fixed, winning game here
+- ![alt text](image.png)
 
 ## ✅ Optional Extensions Completed
 
 ### Challenge 1: Advanced Edge-Case Testing
 
 - Added extra pytest coverage for edge inputs (whitespace, decimals, negatives, huge values).
-- [ ] Insert screenshot of `python -m pytest` passing (required by the challenge)
-
+- ![alt text](image-1.png)
 ### Challenge 2: Feature Expansion
 
 - Added a **persistent High Score** that saves to `high_score.json`.
@@ -41,7 +39,7 @@ This repo is a Streamlit number guessing game that started out *very* buggy (wro
 
 - Added “Hot/Warm/Cold” feedback based on distance from the secret.
 - Added a session summary table.
-- [ ] Insert screenshot of your enhanced UI here
+- ![alt text](image-2.png)
 
 ### Challenge 5: AI Model Comparison
 
