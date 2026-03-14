@@ -8,6 +8,10 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 - List at least two concrete bugs you noticed at the start  
   (for example: "the hints were backwards").
 
+  1) I noticed that hints were not working efficiently they were showing wrong hints or backwards.
+
+  2) I noticed that after starting new game game crashes or stoppes working it is still in the old game and giving wrong outup 
+
 ---
 
 ## 2. How did you use AI as a teammate?
